@@ -11,7 +11,6 @@ pagina-pessoal/
 ├── css/style.css
 └── img/
     ├── foto.jpg
-    ├── captura-formulario.png
     └── captura-pagina.png
 ```
 
