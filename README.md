@@ -27,4 +27,4 @@ O arquivo `css/style.css` é vinculado a `index.html` e `sobre.html` pelo elemen
 
 Campos: Nome, E-mail, Assunto e Mensagem, agrupados com `<fieldset>` e `<legend>`, com botões Enviar e Limpar.
 
-![Captura de tela do formulário](img/captura-formulario.png)
+
