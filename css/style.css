@@ -1,13 +1,3 @@
-/* ==========================================================
-   Página pessoal – Marcone Silva de Brito
-   Folha de estilos externa (style.css) – abordagem MOBILE-FIRST
-   1. Cores  2. Fontes  3. Dimensões e espaçamentos
-   4. Bordas e fundos  5. Componentes  6. Responsividade
-   Os estilos base valem para celulares; as media queries
-   (min-width) acrescentam ajustes para telas maiores.
-   ========================================================== */
-
-
 /* ---------- 1. CORES (variáveis reutilizáveis) ---------- */
 :root {
   --fundo: #eef3f1;           /* fundo da página */
