@@ -13,10 +13,11 @@
     <p>Estudante de tecnologia, curioso por programação e design.</p>
   </header>
 
-  <nav>
+  <nav aria-label="Navegação principal">
     <ul>
       <li><a href="index.html" aria-current="page">Início</a></li>
       <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="#tecnologias">Tecnologias</a></li>
       <li><a href="#hobbies">Hobbies</a></li>
       <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank" rel="noopener">Aprender HTML</a></li>
     </ul>
@@ -31,7 +32,73 @@
         Gosto de aprender coisas novas e transformar ideias em páginas que
         qualquer pessoa possa acessar.
       </p>
-      <img src="img/foto.jpg" alt="Foto de perfil de Marcone Silva de Brito">
+      <img class="foto-perfil" src="img/foto.jpg" alt="Foto de perfil de Marcone Silva de Brito">
+    </section>
+
+    <section id="tecnologias">
+      <h2>Tecnologias e Interesses</h2>
+      <p>Tecnologias, ferramentas e áreas que estudo e tenho interesse.</p>
+
+      <div class="cartoes">
+
+        <article class="cartao">
+          <h3 class="cartao-titulo"><span class="cartao-icone icone-azul" aria-hidden="true">&lt;/&gt;</span> Desenvolvimento Web</h3>
+          <p>Criação de sites e aplicações Web com HTML, CSS e JavaScript.</p>
+          <ul class="tags">
+            <li class="tag tag-azul">HTML</li>
+            <li class="tag tag-azul">CSS</li>
+            <li class="tag tag-azul">JavaScript</li>
+          </ul>
+        </article>
+
+        <article class="cartao">
+          <h3 class="cartao-titulo"><span class="cartao-icone icone-roxo" aria-hidden="true">&#9749;</span> Java</h3>
+          <p>Desenvolvimento de aplicações back-end, com foco em qualidade e boas práticas.</p>
+          <ul class="tags">
+            <li class="tag tag-roxo">Java</li>
+            <li class="tag tag-roxo">Spring</li>
+            <li class="tag tag-roxo">JPA</li>
+          </ul>
+        </article>
+
+        <article class="cartao">
+          <h3 class="cartao-titulo"><span class="cartao-icone icone-verde" aria-hidden="true">&#9638;</span> Banco de Dados</h3>
+          <p>Modelagem, consulta e persistência de dados em aplicações.</p>
+          <ul class="tags">
+            <li class="tag tag-verde">PostgreSQL</li>
+            <li class="tag tag-verde">MySQL</li>
+          </ul>
+        </article>
+
+        <article class="cartao">
+          <h3 class="cartao-titulo"><span class="cartao-icone icone-laranja" aria-hidden="true">&#10548;</span> Controle de Versão</h3>
+          <p>Versionamento de código, colaboração e organização de projetos.</p>
+          <ul class="tags">
+            <li class="tag tag-laranja">Git</li>
+            <li class="tag tag-laranja">GitHub</li>
+          </ul>
+        </article>
+
+        <article class="cartao">
+          <h3 class="cartao-titulo"><span class="cartao-icone icone-azul" aria-hidden="true">&#9636;</span> Engenharia de Software</h3>
+          <p>Interesse em qualidade de software, manutenção e evolução de sistemas.</p>
+          <ul class="tags">
+            <li class="tag tag-azul">Qualidade</li>
+            <li class="tag tag-azul">Refatoração</li>
+          </ul>
+        </article>
+
+        <article class="cartao">
+          <h3 class="cartao-titulo"><span class="cartao-icone icone-vermelho" aria-hidden="true">&#9678;</span> Ciclismo</h3>
+          <p>Prática de ciclismo de estrada e MTB, com foco em performance e bem-estar.</p>
+          <ul class="tags">
+            <li class="tag tag-vermelho">Ciclismo</li>
+            <li class="tag tag-vermelho">Treino</li>
+            <li class="tag tag-vermelho">Saúde</li>
+          </ul>
+        </article>
+
+      </div>
     </section>
 
     <section id="hobbies" class="secao-destacada">
@@ -43,7 +110,6 @@
         <li>Fazer caminhadas ao ar livre</li>
       </ul>
     </section>
-    
 
     <section id="contato">
       <h2>Entre em contato</h2>
@@ -71,14 +137,13 @@
             <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
           </p>
 
-          <p>
+          <p class="botoes">
             <button type="submit">Enviar</button>
             <button type="reset">Limpar</button>
           </p>
         </fieldset>
       </form>
     </section>
-  
   </main>
 
   <footer>

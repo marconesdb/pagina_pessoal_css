@@ -1,15 +1,17 @@
 /* ==========================================================
    Página pessoal – Marcone Silva de Brito
-   Folha de estilos externa (style.css) organizada por tópicos:
+   Folha de estilos externa (style.css) – abordagem MOBILE-FIRST
    1. Cores  2. Fontes  3. Dimensões e espaçamentos
-   4. Bordas  5. Componentes  6. Responsividade
+   4. Bordas e fundos  5. Componentes  6. Responsividade
+   Os estilos base valem para celulares; as media queries
+   (min-width) acrescentam ajustes para telas maiores.
    ========================================================== */
 
 
 /* ---------- 1. CORES (variáveis reutilizáveis) ---------- */
 :root {
   --fundo: #eef3f1;           /* fundo da página */
-  --papel: #ffffff;          /* fundo do conteúdo */
+  --papel: #ffffff;           /* fundo do conteúdo */
   --texto: #1f2d2b;           /* texto principal */
   --destaque: #2f6f66;        /* links, títulos, botões */
   --destaque-escuro: #1f524b; /* cabeçalho e hover */
@@ -21,7 +23,7 @@
 /* ---------- 2. FONTES ---------- */
 body {
   margin: 0;
-  padding: 1.5rem 0.75rem 2.5rem;       /* espaço ao redor da "folha" */
+  padding: 0 0 2rem;                    /* celular: folha ocupa a largura toda */
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1.0625rem;                 /* 17px: leitura confortável */
   line-height: 1.7;
@@ -29,7 +31,7 @@ body {
   background: var(--fundo);
 }
 
-h1, h2, legend {
+h1, h2, h3, legend {
   font-family: Georgia, "Times New Roman", serif;   /* títulos com serifa */
 }
 
@@ -43,17 +45,23 @@ h2 {
 /* ---------- 3. DIMENSÕES E ESPAÇAMENTOS ---------- */
 * { box-sizing: border-box; }   /* largura inclui padding e borda */
 
-/* As quatro partes da página formam uma única "folha" centralizada */
-header, nav, main, footer {
-  max-width: 44rem;             /* largura máxima do conteúdo */
-  margin: 0 auto;               /* centraliza na tela */
-  padding: 1rem 1.5rem;         /* espaço interno */
+/* Imagens nunca ultrapassam o contêiner e mantêm a proporção */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-header { padding-block: 2rem; }
+/* As quatro partes da página formam uma única "folha" centralizada */
+header, nav, main, footer {
+  max-width: 60rem;             /* largura máxima do conteúdo */
+  margin: 0 auto;               /* centraliza em telas grandes */
+  padding: 1rem;                /* espaço interno (celular) */
+}
+
+header { padding-block: 1.5rem; }
 main   { padding-block: 1.5rem; }
 
-section { margin: 2.5rem 0; }
+section { margin: 2rem 0; }
 main section:first-child { margin-top: 0; }
 main section:last-child  { margin-bottom: 0; }
 
@@ -62,12 +70,11 @@ main section:last-child  { margin-bottom: 0; }
 header {
   background: var(--destaque-escuro);
   color: var(--suave);
-  border-radius: 0.75rem 0.75rem 0 0;   /* só os cantos de cima */
 }
 
 header h1 {
   margin: 0 0 0.5rem;
-  font-size: clamp(1.6rem, 4.5vw, 2.25rem);  /* cresce e encolhe com a tela */
+  font-size: clamp(1.6rem, 6vw, 2.25rem);   /* cresce e encolhe com a tela */
   line-height: 1.2;
   color: #ffffff;
 }
@@ -84,7 +91,6 @@ main { background: var(--papel); }
 footer {
   background: var(--suave);
   border-top: 1px solid var(--suave);
-  border-radius: 0 0 0.75rem 0.75rem;  /* só os cantos de baixo */
   font-size: 0.9rem;
   text-align: center;
 }
@@ -113,27 +119,27 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-/* Navegação */
+/* Navegação (Flexbox) – celular: itens empilhados, um por linha */
 nav ul {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.25rem;
   margin: 0;
   padding: 0;
 }
 
 nav a {
   display: block;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;           /* formato de "pílula" */
+  padding: 0.6rem 0.9rem;          /* área de toque confortável */
+  border-radius: 0.5rem;
   text-decoration: none;
   font-weight: 600;
 }
 
 nav a:hover { background: var(--suave); }
 
-nav a[aria-current="page"] {      /* página em que o visitante está */
+nav a[aria-current="page"] {       /* página em que o visitante está */
   background: var(--destaque);
   color: #ffffff;
 }
@@ -158,15 +164,16 @@ main p { margin: 0 0 1rem; }
 
 .secao-destacada ul { margin-bottom: 0; }
 
-/* Foto de perfil */
-section img {
+/* Foto de perfil: largura relativa, altura automática, sempre quadrada */
+.foto-perfil {
   display: block;
   width: 12rem;
-  height: 12rem;                  /* largura = altura → círculo perfeito */
   max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;            /* mantém o círculo perfeito */
   object-fit: cover;              /* recorta sem deformar a foto */
   object-position: center 25%;    /* mantém o rosto enquadrado */
-  margin-top: 1rem;
+  margin: 1rem auto 0;            /* celular: centralizada abaixo do texto */
   border: 4px solid var(--destaque);
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(31, 45, 43, 0.2);
@@ -177,13 +184,92 @@ section ul, section ol { padding-left: 1.5rem; }
 section li { margin-bottom: 0.35rem; }
 section li::marker { color: var(--destaque); font-weight: 700; }
 
+/* ----- Cartões "Tecnologias e Interesses" ----- */
+
+/* Grid: celular = 1 coluna (as colunas aumentam nas media queries) */
+.cartoes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Flexbox dentro do cartão: as tags ficam sempre alinhadas na base */
+.cartao {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+  background: var(--papel);
+  border: 1px solid var(--suave);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(31, 45, 43, 0.08);
+}
+
+.cartao-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: var(--texto);
+}
+
+.cartao p {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.cartao-icone {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Lista de tags (Flexbox com quebra de linha) */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: auto 0 0;               /* empurra as tags para o fim do cartão */
+  padding: 0;
+}
+
+section .tags { padding-left: 0; }
+section .tags li { margin-bottom: 0; }
+
+.tag {
+  padding: 0.1rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* Variações de cor (ícone e tags) */
+.icone-azul, .tag-azul         { background: #dbe7ff; color: #1d3f8f; }
+.icone-roxo, .tag-roxo         { background: #e8defa; color: #532b96; }
+.icone-verde, .tag-verde       { background: #d9f2de; color: #1d6a33; }
+.icone-laranja, .tag-laranja   { background: #fde6d4; color: #9a4310; }
+.icone-vermelho, .tag-vermelho { background: #fcdcdc; color: #9b1c1c; }
+
 /* Formulário */
 fieldset {
   margin: 0;
-  padding: 1rem 1.25rem 0.5rem;
+  padding: 1rem 1rem 0.5rem;
   border: 1px solid var(--suave);
   border-radius: 0.75rem;
   background: var(--fundo);
+  min-width: 0;                   /* evita estourar a largura no celular */
 }
 
 legend {
@@ -218,10 +304,16 @@ input:focus, textarea:focus {
   border-color: var(--destaque);
 }
 
-/* Botões */
+/* Botões (Flexbox) – celular: um embaixo do outro, largura total */
+.botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 button {
+  width: 100%;
   padding: 0.6rem 1.5rem;
-  margin-right: 0.5rem;
   font: inherit;
   font-weight: 600;
   border: 2px solid var(--destaque);
@@ -245,10 +337,53 @@ button:focus-visible {
 }
 
 
-/* ---------- 6. RESPONSIVIDADE ---------- */
+/* ---------- 6. RESPONSIVIDADE (mobile-first: min-width) ---------- */
 
-/* Telas médias e grandes: foto ao lado do texto de apresentação */
-@media (min-width: 40rem) {
+/* Respeita quem prefere menos animações */
+@media (prefers-reduced-motion: reduce) {
+  button { transition: none; }
+}
+
+/* ≥ 480px: celulares grandes – menu em linha e botões lado a lado */
+@media (min-width: 30rem) {
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  nav a {
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;         /* formato de "pílula" */
+  }
+
+  .botoes { flex-direction: row; }
+
+  button { width: auto; }
+}
+
+/* ≥ 768px: tablets – folha com cantos arredondados, 2 cartões por linha,
+   foto ao lado do texto de apresentação */
+@media (min-width: 48rem) {
+  body { padding: 1.5rem 0.75rem 2.5rem; }
+
+  header, nav, main, footer { padding-inline: 1.5rem; }
+  header { padding-block: 2rem; }
+
+  header {
+    border-radius: 0.75rem 0.75rem 0 0;   /* só os cantos de cima */
+  }
+
+  footer {
+    border-radius: 0 0 0.75rem 0.75rem;   /* só os cantos de baixo */
+  }
+
+  section { margin: 2.5rem 0; }
+
+  fieldset { padding: 1rem 1.25rem 0.5rem; }
+
+  .cartoes { grid-template-columns: repeat(2, 1fr); }
+
   #apresentacao {
     display: grid;
     grid-template-columns: 1fr 12rem;
@@ -257,17 +392,18 @@ button:focus-visible {
   }
   #apresentacao h2 { grid-column: 1 / -1; }
   #apresentacao p  { margin-top: 0; }
-  #apresentacao img { margin-top: 0.25rem; }
+  #apresentacao .foto-perfil { margin: 0.25rem 0 0; }
 }
 
-/* Telas pequenas: a folha ocupa a largura toda, sem cantos arredondados */
-@media (max-width: 30rem) {
-  body { padding: 0 0 2rem; }
-  header, footer { border-radius: 0; }
-  button { width: 100%; margin: 0 0 0.5rem; }
-}
+/* ≥ 1024px: computadores – 3 cartões por linha e mais respiro */
+@media (min-width: 64rem) {
+  header, nav, main, footer { padding-inline: 2.5rem; }
 
-/* Respeita quem prefere menos animações */
-@media (prefers-reduced-motion: reduce) {
-  button { transition: none; }
+  .cartoes {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  #apresentacao { grid-template-columns: 1fr 14rem; }
+  .foto-perfil { width: 14rem; }
 }
